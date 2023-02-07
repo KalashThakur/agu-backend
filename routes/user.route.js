@@ -37,4 +37,19 @@ userController.patch("/:note_id", async(req, res) => {
         res.send(result)
 });
 
+//DELETE
+userController.delete("/:user_id", async(req, res) => {
+    const {user_id} = req.params;
+
+   const data = await UserModel.findOne({_id: user_id})
+   
+   if(data){
+    const deletedData = await UserModel.findOneAndDelete({_id: user_id})
+    return res.send({"message": "deletedData data"})
+   }
+  
+
+   
+});
+
 module.exports = userController
